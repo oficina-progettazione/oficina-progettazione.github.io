@@ -283,3 +283,8 @@ button[data-zoom]:focus-visible{outline:2px solid var(--ink);outline-offset:3px}
 .lead-person .person img{display:block;width:100%;aspect-ratio:4/5;object-fit:cover}
 .p-lead{max-width:56ch;margin-top:14px!important;line-height:1.6}
 .stacks{padding-bottom:clamp(60px,10vh,120px)}
+/* apertura: logo che si disegna, poi la griglia */
+.intro{position:fixed;inset:0;z-index:100;background:var(--white);display:flex;align-items:center;justify-content:center;transition:opacity .9s ease,visibility .9s;cursor:pointer}
+.intro img{width:min(440px,70vw);height:auto}
+.intro.out{opacity:0;visibility:hidden}
+.ni .intro{display:none}
