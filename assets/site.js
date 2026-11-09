@@ -89,6 +89,19 @@
     } else desks.forEach(function(d){d.classList.add('in')});
   }
 
+  // carosello dello studio: foto al centro, le altre dietro e sfocate
+  [].forEach.call(document.querySelectorAll('.cf'),function(cf){
+    var it=[].slice.call(cf.querySelectorAll('.cf-item')),n=it.length,k=0;
+    function show(i){k=(i+n)%n;it.forEach(function(e,j){var d=j-k;if(d>n/2)d-=n;if(d<-n/2)d+=n;e.className='cf-item'+(d===0?' p0':d===1?' p1':d===-1?' m1':d===2?' p2':d===-2?' m2':'');var im=e.querySelector('img');if(Math.abs(d)<=2&&im.loading==='lazy')im.loading='eager'})}
+    it.forEach(function(e,j){e.addEventListener('click',function(){if(j!==k)show(j)})});
+    cf.querySelector('.cf-prev').addEventListener('click',function(){show(k-1)});
+    cf.querySelector('.cf-next').addEventListener('click',function(){show(k+1)});
+    cf.tabIndex=0;cf.addEventListener('keydown',function(e){if(e.key==='ArrowLeft')show(k-1);if(e.key==='ArrowRight')show(k+1)});
+    var sx=null;cf.addEventListener('touchstart',function(e){sx=e.touches[0].clientX},{passive:true});
+    cf.addEventListener('touchend',function(e){if(sx===null)return;var dx=e.changedTouches[0].clientX-sx;if(Math.abs(dx)>40)show(k+(dx<0?1:-1));sx=null});
+    show(0);
+  });
+
   // foto a schermo intero
   var items=[].slice.call(document.querySelectorAll('button[data-zoom]'));
   if(items.length){
