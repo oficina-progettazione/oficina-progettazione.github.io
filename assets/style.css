@@ -303,3 +303,10 @@ button[data-zoom]:focus-visible{outline:2px solid var(--ink);outline-offset:3px}
 .cf-prev{left:clamp(10px,3vw,40px)}.cf-next{right:clamp(10px,3vw,40px)}
 @media(max-width:700px){.cf{height:62vh}.cf-item.p1{transform:translateX(30%) scale(.8)}.cf-item.m1{transform:translateX(-130%) scale(.8)}.cf-item.p2,.cf-item.m2{opacity:0}}
 @media(prefers-reduced-motion:reduce){.cf-item{transition:none}}
+/* studio: Buenos Aires */
+.ba{padding:0 var(--side) clamp(50px,8vh,90px)}
+.ba .muted{max-width:60ch;margin:8px 0 22px}
+.ba-strip{display:flex;gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:8px}
+.ba-strip figure{margin:0;flex:0 0 auto;scroll-snap-align:start}
+.ba-strip img{display:block;height:clamp(240px,42vh,420px);width:auto}
+.ba-credits{font-size:11px;color:#999;margin-top:10px;max-width:90ch}
