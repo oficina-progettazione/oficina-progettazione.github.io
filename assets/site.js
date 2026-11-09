@@ -3,6 +3,17 @@
   if(btn){btn.addEventListener('click',function(){var o=nav.classList.toggle('open');btn.setAttribute('aria-expanded',o)});
     nav.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){nav.classList.remove('open');btn.setAttribute('aria-expanded',false)})});}
 
+  // apertura: logo che si disegna, poi sfuma (al primo ingresso; clic/tasto/rotella per saltare)
+  var intro=document.getElementById('intro');
+  if(intro&&getComputedStyle(intro).display!=='none'){
+    var lg=intro.querySelector('img'),done=false;
+    var close=function(){if(done)return;done=true;intro.classList.add('out');setTimeout(function(){intro.remove()},1000)};
+    var start=function(){requestAnimationFrame(function(){lg.classList.add('go');setTimeout(close,3300)})};
+    if(lg.complete)start();else{lg.addEventListener('load',start);lg.addEventListener('error',close)}
+    setTimeout(close,6000);
+    ['click','keydown','wheel','touchstart'].forEach(function(ev){addEventListener(ev,close,{once:true,passive:true})});
+  }
+
   // logo che si disegna: parte quando la copertina è davvero visibile
   var d=document.querySelector('.draw');
   if(d){
